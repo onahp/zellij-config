@@ -1,3 +1,16 @@
+layout {
+    pane split_direction="vertical" {
+        pane
+        pane split_direction="horizontal" {
+            pane
+            pane
+        }
+    }
+    pane size=1 borderless=true {
+        plugin location="zellij:compact-bar"
+    }
+}
+
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal {
@@ -74,7 +87,7 @@ keybinds {
     scroll {
         bind "Ctrl s" { SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
-        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
@@ -101,25 +114,30 @@ keybinds {
         bind "w" { SearchToggleOption "Wrap"; }
         bind "o" { SearchToggleOption "WholeWord"; }
     }
+
     entersearch {
         bind "Ctrl c" "Esc" { SwitchToMode "Scroll"; }
         bind "Enter" { SwitchToMode "Search"; }
     }
+
     renametab {
         bind "Ctrl c" { SwitchToMode "Normal"; }
         bind "Esc" { SwitchToMode "Tab"; }
         // bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
     }
+
     renamepane {
         bind "Ctrl c" { SwitchToMode "Normal"; }
         bind "Esc" { SwitchToMode "Pane"; }
         // bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
     }
+
     session {
         bind "Ctrl o" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
     }
+
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
         bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
@@ -143,6 +161,7 @@ keybinds {
         bind "Space" { NextSwapLayout; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
+
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
@@ -322,6 +341,7 @@ plugins {
 // The folder in which Zellij will look for layouts
 //
 // layout_dir "/path/to/my/layout_dir"
+// layout_dir "./layouts/layout_file.kdl"
 
 // The folder in which Zellij will look for themes
 //

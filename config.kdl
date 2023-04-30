@@ -10,8 +10,9 @@ keybinds {
     }
 
     resize {
-        bind "i" { SwitchToMode "Normal"; }
+        bind "Ctrl r" { SwitchToMode "Pane"; }
         bind "Esc" { SwitchToMode "Pane"; }
+        bind "i" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
         bind "j" "Down" { Resize "Increase Down"; }
         bind "k" "Up" { Resize "Increase Up"; }
@@ -20,6 +21,7 @@ keybinds {
         bind "J" { Resize "Decrease Down"; }
         bind "K" { Resize "Decrease Up"; }
         bind "L" { Resize "Decrease Right"; }
+        bind "e" { TogglePaneEmbedOrFloating; }
         bind "=" "+" { Resize "Increase"; }
         bind "-" { Resize "Decrease"; }
     }
@@ -43,7 +45,7 @@ keybinds {
     }
 
     move {
-        bind "Ctrl m" { SwitchToMode "Normal"; }
+        bind "Ctrl h" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
@@ -191,7 +193,7 @@ keybinds {
     }
 
     shared_except "move" "locked" {
-        bind "Ctrl m" { SwitchToMode "Move"; }
+        bind "Ctrl h" { SwitchToMode "Move"; }
     }
 
     shared_except "tmux" "locked" {

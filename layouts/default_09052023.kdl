@@ -1,0 +1,92 @@
+layout {
+
+  cwd "/home/onahp"
+
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+    children
+    //pane size=2 borderless=true {
+    //  plugin location="zellij:compact-bar"
+    //  plugin location="zellij:status-bar"
+    //}
+  }
+
+  tab_template name="ui" {
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+    children
+  }
+
+  ui name="main" focus=true {
+    pane name="terminal"
+  }
+
+  // Acesss to current project
+  ui name="w-lumio" cwd="work/lumio" {
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd "work/lumio"
+      }
+
+      pane command="pnpm" name="p-app" start_suspended=true {
+        args "run" "dev:app"
+        cwd "work/lumio"
+      }
+
+      pane command="pnpm" name="db:mysql:gen" start_suspended=true {
+        args "run" "db:mysql:gen"
+        cwd "work/lumio/packages/db"
+      }
+
+      pane command="pnpm" name="db:mysql:push" start_suspended=true {
+        args "run" "db:mysql:push"
+        cwd "work/lumio/packages/db"
+      }
+
+      pane command="pnpm" name="db:mysql:up" start_suspended=true {
+        args "run" "db:mysql:up"
+        cwd "work/lumio/packages/db"
+      }
+    }
+
+    pane split_direction="vertical" {
+      pane edit="package.json" name="p-root"
+      pane command="nvim" name="p-db" {
+        args "+DBUIToggle"
+      }
+    }
+  }
+
+  // Taskwarrior taskrc - handing tasks
+  ui name="d-tt" cwd=".window-manager/taskwarrior-taskrc" {
+    pane command="taskwarrior-tui" name="taskwarrior"
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".window-manager/taskwarrior-taskrc"
+      }
+    }
+  }
+
+  // Docker handler
+  ui name="d-dock" {
+    pane command="oxker" name="docker" start_suspended=true
+  }
+
+  ui name="w-syn" cwd="work/lumio" {
+    pane command="nvim" name="p-db" {
+      args "+Himalaya"
+    }
+  }
+
+}

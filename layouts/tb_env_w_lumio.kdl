@@ -1,0 +1,53 @@
+layout {
+
+    cwd "/home/onahp"
+
+    default_tab_template { 
+      pane size=1 borderless=true {
+        plugin location="zellij:compact-bar"
+      }
+      children
+    }
+
+    // Acesss to current project
+    tab name="w-lumio" cwd="work/lumio" {
+      floating_panes {
+        pane command="pnpm" name="db:mysql:gen" start_suspended=true {
+          args "run" "db:mysql:gen"
+          cwd "work/lumio/packages/db"
+        }
+
+        pane command="pnpm" name="db:mysql:push" start_suspended=true {
+          args "run" "db:mysql:push"
+          cwd "work/lumio/packages/db"
+        }
+
+        pane command="pnpm" name="db:mysql:up" start_suspended=true {
+          args "run" "db:mysql:up"
+          cwd "work/lumio/packages/db"
+        }
+      }
+
+      pane split_direction="vertical" {
+        pane edit="package.json" name="p-root"
+        pane command="nvim" name="p-db" {
+          args "+DBUIToggle"
+        }
+      }
+
+    }
+
+    // Run application environments
+    tab name="w-lumio-api-tests" cwd="work/lumio" {
+      pane split_direction="vertical" {
+        pane command="pnpm" name="dev-app" start_suspended=true {
+          args "run" "dev:app"
+        }
+        pane command="pnpm" name="vitest" start_suspended=true {
+          args "run" "test"
+            cwd "packages/api"
+        }
+      }
+    }
+
+}

@@ -1,0 +1,192 @@
+layout {
+
+  cwd "/home/onahp"
+
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+    children
+    //pane size=2 borderless=true {
+    //  plugin location="zellij:compact-bar"
+    //  plugin location="zellij:status-bar"
+    //}
+  }
+
+  tab_template name="ui" {
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+    children
+  }
+
+  ui name="main" focus=true {
+    pane name="terminal"
+  }
+
+  ui name="w-syn" cwd="work/lumio" {
+    pane command="nvim" name="p-db" {
+      args "+Himalaya"
+    }
+  }
+
+  // Acesss to current project
+  ui name="w-lumio" cwd="work/lumio" {
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd "work/lumio"
+      }
+
+      pane command="pnpm" name="p-app" start_suspended=true {
+        args "run" "dev:app"
+        cwd "work/lumio"
+      }
+
+      pane command="pnpm" name="db:mysql:gen" start_suspended=true {
+        args "run" "db:mysql:gen"
+        cwd "work/lumio/packages/db"
+      }
+
+      pane command="pnpm" name="db:mysql:push" start_suspended=true {
+        args "run" "db:mysql:push"
+        cwd "work/lumio/packages/db"
+      }
+
+      pane command="pnpm" name="db:mysql:up" start_suspended=true {
+        args "run" "db:mysql:up"
+        cwd "work/lumio/packages/db"
+      }
+
+      pane command="pnpm" name="db:mysql:drop" start_suspended=true {
+        args "run" "db:mysql:drop"
+        cwd "work/lumio/packages/db"
+      }
+
+      pane command="pnpm" name="db:mysql:intro" start_suspended=true {
+        args "run" "db:mysql:intro"
+        cwd "work/lumio/packages/db"
+      }
+    }
+
+    pane split_direction="vertical" {
+      pane edit="package.json" name="p-root"
+      pane command="nvim" name="p-db" {
+        args "+DBUIToggle"
+      }
+    }
+  }
+
+  // Access to current project
+  ui name="g-termauth-rs" cwd="uni/assignments/custom/termauth-rs" {
+    pane split_direction="horizontal" stacked=true {
+      pane edit="src/main.rs" name="termauth-rs"
+      pane command="cargo" name="termauth-rs-app" start_suspended=true {
+        args "run"
+      }
+      pane command="cargo" name="termauth-rs-test" start_suspended=true {
+        args "test"
+      }
+    }
+
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd "uni/assignments/custom/termauth-rs"
+      }
+    }
+  }
+
+  // Taskwarrior taskrc - handing tasks
+  ui name="d-tt" cwd=".window-manager/taskwarrior-taskrc" {
+    pane command="taskwarrior-tui" name="taskwarrior"
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".window-manager/taskwarrior-taskrc"
+      }
+    }
+  }
+
+  // Docker handler
+  ui name="d-dock" {
+    pane command="oxker" name="docker" start_suspended=true
+  }
+
+  // Tmp dump of screen notes
+  ui name="d-tmp" cwd="vimwiki/dev-library/tmp" {
+    pane edit="my-dump.txt" name="dump"
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd "vimwiki"
+      }
+    }
+  }
+
+  // Access to vim configs for any quick edits
+  ui name="conf-v" cwd=".config/nvim" split_direction="horizontal" {
+    pane split_direction="horizontal" stacked=true {
+      pane edit="init.lua" name="neovim-base"
+      pane edit="lua/zipyx/config/plugins.lua" name="config-plugins"
+      pane edit="lua/zipyx/config/globals.lua" name="config-globals"
+      pane edit="lua/zipyx/plugin/keymaps.lua" name="plugin-keymaps"
+      pane edit="lua/zipyx/plugin/globals.lua" name="plugin-globals"
+    }
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".config/nvim"
+      }
+    }
+  }
+
+
+  // Access to zellij quick edits of layout, configs etc
+  ui name="conf-z" cwd=".config/zellij" {
+    pane edit="config.kdl" name="zellij-config"
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".config/zellij"
+      }
+    }
+  }
+
+  // Mod of any arch changes
+  ui name="conf-a" cwd=".window-manager/arch-env-setup" {
+    pane edit="setup-environment.sh" name="env"
+    floating_panes {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".window-manager/arch-env-setup"
+      }
+    }
+  }
+
+  ui name="sys" {
+    pane command="btm" name="system" start_suspended=true
+  }
+
+}

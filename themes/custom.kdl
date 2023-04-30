@@ -1,0 +1,19 @@
+themes {
+  custom {
+    //fg "#B3B1AD"
+    //fg "#D0CFCC"
+    //fg "#bbbbbb"
+    //fg "#404E4D"
+    fg "#212738"
+    bg "#0D1117"
+    black "#0D1117"
+    red "#12488B"
+    green "#AA280B"
+    yellow "#A2734C"
+    blue "#AA280B"
+    magenta "#A247AB"
+    cyan "#2AA1B3"
+    white "#0D1117"
+    orange "#AA280B"
+  }
+}

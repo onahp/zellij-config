@@ -1,64 +1,16 @@
-// layout_file.kdl
-
 layout {
-  // Default template with standard UI
-  default_tab_template {
+
+  cwd "/home/onahp"
+
+  default_tab_template { 
     pane size=1 borderless=true {
       plugin location="zellij:compact-bar"
     }
     children
-    //pane size=2 borderless=true {
-    //  plugin location="zellij:compact-bar"
-    //}
   }
 
-  // Load terminal with standard strider template
-  tab_template name="strider_tab" {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
-    }
-
-    pane split_direction="Vertical" {
-      pane size="20%" name="System" {
-        plugin location="zellij:strider"
-      }
-      children
-    }
-
-    pane size=2 borderless=true {
-      plugin location="zellij:status-bar"
-    }
-  }
-
-  // Creating a Pane template that allows for us to run rust commands
-  pane_template name="lang_rust_execute" {
-    pane
-    pane split_direction="horizontal" {
-      children
-      pane command="cargo" size="30%" {
-          args "test"
-      }
-    }
-  }
-
-  // First tab with terminal
   tab name="main" focus=true {
-    pane name="Vim"
+    pane name="terminal"
   }
 
-  tab name="w-(lumio)" cwd="~/work/lumio" {
-    pane edit="/home/onahp/work/lumio/package.json" name="Script"
-  }
-
-  tab name="g-(termauth-rs)" cwd="/home/onahp/work/lumio" {
-    pane edit="~/uni/assignments/custom/termauth-rs" name="termauth-rs"
-  }
-
-  tab name="g-(config)" cwd="/home/onahp/.config/nvim" split_direction="horizontal" {
-    pane split_direction="vertical" {
-      pane edit="/home/onahp/.config/nvim/init.lua" name="base"
-      pane edit="/home/onahp/.config/nvim/lua/zipyx/config/plugins.lua" name="integrations"
-    }
-    pane edit="/home/onahp/.config/nvim/lua/zipyx/plugin/keymaps.lua" name="keymap"
-  }
 }

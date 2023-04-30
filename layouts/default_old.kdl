@@ -1,0 +1,159 @@
+// layout_file.kdl
+
+layout {
+
+  cwd "/home/onahp"
+
+  // Default template with standard UI and bar at top of terminal
+  default_tab_template { 
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+    children
+    //pane size=2 borderless=true {
+    //  plugin location="zellij:compact-bar"
+    //  plugin location="zellij:status-bar"
+    //}
+  }
+
+  // Load terminal with standard strider template
+  tab_template name="strider_tab" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+
+    pane split_direction="Vertical" {
+      pane size="15%" name="System" {
+        plugin location="zellij:strider"
+      }
+      children
+    }
+
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+
+  // Creating a Pane template that allows for us to run rust commands
+  pane_template name="lang_rust_execute" {
+    pane
+    pane split_direction="horizontal" {
+      children
+      pane command="cargo" size="30%" {
+          args "test"
+      }
+    }
+  }
+
+  // First tab with pure terminal
+  tab name="main" focus=true {
+    pane name="Terminal"
+  }
+
+  // Acesss to current project
+  tab name="w-lumio" cwd="work/lumio" {
+    floating_panes exact_panes=2 {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd "work/lumio"
+      }
+    }
+    pane edit="package.json" name="lumio-parent-package.json"
+  }
+
+  // Access to current project
+  tab name="g-termauth-rs" cwd="uni/assignments/custom/termauth-rs" {
+    pane edit="src/main.rs" name="termauth-rs"
+    floating_panes exact_panes=2 {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd "uni/assignments/custom/termauth-rs"
+      }
+    }
+  }
+
+  // Access to zellij quick edits of layout, configs etc
+  tab name="g-zlj" cwd=".config/zellij" {
+    pane edit="config.kdl" name="zellij-config"
+    floating_panes exact_panes=2 {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".config/zellij"
+      }
+    }
+  }
+
+  // Access to vim configs for any quick edits
+  tab name="g-vim" cwd=".config/nvim" split_direction="horizontal" {
+    pane split_direction="vertical" {
+      pane edit="init.lua" name="base"
+      pane edit="lua/zipyx/config/plugins.lua" name="integrations"
+    }
+    pane edit="lua/zipyx/plugin/keymaps.lua" name="keymap"
+    floating_panes exact_panes=2 {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".config/nvim"
+      }
+    }
+  }
+
+  // Taskwarrior taskrc - handing tasks
+  tab name="g-tt" cwd=".window-manager/taskwarrior-taskrc" {
+    pane command="taskwarrior-tui" name="taskwarrior"
+    floating_panes exact_panes=2 {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".window-manager/taskwarrior-taskrc"
+      }
+    }
+  }
+
+  // Mod of any arch changes
+  tab name="g-arch-env" cwd=".window-manager/arch-env-setup" {
+    pane edit="setup-environment.sh" name="env"
+    floating_panes exact_panes=2 {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd ".window-manager/arch-env-setup"
+      }
+    }
+  }
+
+  // Docker handler
+  tab name="dock" {
+    pane command="oxker" name="docker"
+  }
+
+  // Tmp dump of screen notes
+  tab name="tmp" cwd="vimwiki/dev-library/tmp" {
+    pane edit="my-dump.txt" name="dump"
+    floating_panes focus=false {
+      pane command="gitui" name="git-status" start_suspended=true {
+        x "15%"
+        y "8%"
+        width "70%" 
+        height "80%"
+        cwd "vimwiki"
+      }
+    }
+  }
+}

@@ -43,22 +43,22 @@ layout {
 
   // First tab with terminal
   tab name="main" focus=true {
-    pane name="TERMINAL"
+    pane name="Vim"
   }
 
   tab name="w-(lumio)" cwd="~/work/lumio" {
-    // pane edit="/home/onahp/work/lumio/package.json" name="Script"
+    pane edit="/home/onahp/work/lumio/package.json" name="Script"
   }
 
-  tab name="g-(termauth-rs)" cwd="~/work/lumio" {
-    // pane edit="~/uni/assignments/custom/termauth-rs" name="termauth-rs"
+  tab name="g-(termauth-rs)" cwd="/home/onahp/work/lumio" {
+    pane edit="~/uni/assignments/custom/termauth-rs" name="termauth-rs"
   }
 
-  tab name="l-(config)" cwd="~/.config/nvim" split_direction="horizontal" {
-    //pane split_direction="vertical" {
-    //  pane edit="/home/onahp/.config/nvim/init.lua" name="init"
-    //  pane edit="/home/onahp/.config/nvim/lua/zipyx/config/plugins.lua" name="plugins"
-    //}
-    //pane edit="/home/onahp/.config/nvim/lua/zipyx/plugin/keymaps.lua" name="keymaps"
+  tab name="g-(config)" cwd="/home/onahp/.config/nvim" split_direction="horizontal" {
+    pane split_direction="vertical" {
+      pane edit="/home/onahp/.config/nvim/init.lua" name="base"
+      pane edit="/home/onahp/.config/nvim/lua/zipyx/config/plugins.lua" name="integrations"
+    }
+    pane edit="/home/onahp/.config/nvim/lua/zipyx/plugin/keymaps.lua" name="keymap"
   }
 }

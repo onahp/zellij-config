@@ -1,4 +1,10 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
+ui {
+    pane_frames {
+        hide_session_name true
+    }
+}
+
 keybinds {
     unbind "Ctrl h"
     normal {
@@ -24,12 +30,6 @@ keybinds {
         bind "-" { Resize "Decrease"; }
         bind "Esc" { SwitchToMode "Pane"; }
     }
-
-    shared_among "resize" "pane" "move" {
-        bind "I" { SwitchToMode "RenamePane"; PaneNameInput 0;}
-        bind "i" { SwitchToMode "Normal"; }
-        bind "e" { TogglePaneEmbedOrFloating; }
-      }
 
     pane {
         bind "E" { SwitchToMode "RenamePane"; }
@@ -82,9 +82,13 @@ keybinds {
         bind "Tab" { ToggleTab; }
     }
 
-    scroll {
+    shared_among "resize" "pane" "move" "scroll" "search" {
         bind "I" { SwitchToMode "RenamePane"; PaneNameInput 0;}
         bind "i" { SwitchToMode "Normal"; }
+        bind "e" { TogglePaneEmbedOrFloating; }
+    }
+
+    scroll {
         bind "Ctrl s" { SwitchToMode "Normal"; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
@@ -100,8 +104,6 @@ keybinds {
     }
 
     search {
-        bind "I" { SwitchToMode "RenamePane"; PaneNameInput 0;}
-        bind "i" { SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Normal"; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }

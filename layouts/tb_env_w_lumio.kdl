@@ -12,18 +12,23 @@ layout {
     // Acesss to current project
     tab name="w-lumio" cwd="work/lumio" {
       floating_panes {
-        pane command="pnpm" name="db:mysql:gen" start_suspended=true {
-          args "run" "db:mysql:gen"
+        pane command="pnpm" name="db:generate" start_suspended=true {
+          args "run" "db:generate"
           cwd "work/lumio/packages/db"
         }
 
-        pane command="pnpm" name="db:mysql:push" start_suspended=true {
-          args "run" "db:mysql:push"
+        pane command="pnpm" name="db:push" start_suspended=true {
+          args "run" "db:push"
           cwd "work/lumio/packages/db"
         }
 
-        pane command="pnpm" name="db:mysql:up" start_suspended=true {
-          args "run" "db:mysql:up"
+        pane command="pnpm" name="db:up" start_suspended=true {
+          args "run" "db:up"
+          cwd "work/lumio/packages/db"
+        }
+
+        pane command="pnpm" name="dock:up" start_suspended=true {
+          args "run" "dock:up"
           cwd "work/lumio/packages/db"
         }
       }

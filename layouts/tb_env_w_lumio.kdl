@@ -12,18 +12,43 @@ layout {
     // Acesss to current project
     tab name="w-lumio" cwd="work/lumio" {
       floating_panes {
-        pane command="pnpm" name="db:generate" start_suspended=true {
-          args "run" "db:generate"
+        pane command="pnpm" name="db:generate:pg" start_suspended=true {
+          args "run" "db:generate:pg"
           cwd "work/lumio/packages/db"
         }
 
-        pane command="pnpm" name="db:push" start_suspended=true {
-          args "run" "db:push"
+        pane command="pnpm" name="db:generate:mysql" start_suspended=true {
+          args "run" "db:generate:mysql"
           cwd "work/lumio/packages/db"
         }
 
-        pane command="pnpm" name="db:up" start_suspended=true {
-          args "run" "db:up"
+        pane command="pnpm" name="db:push:pg" start_suspended=true {
+          args "run" "db:push:pg"
+          cwd "work/lumio/packages/db"
+        }
+
+        pane command="pnpm" name="db:push:mysql" start_suspended=true {
+          args "run" "db:push:mysql"
+          cwd "work/lumio/packages/db"
+        }
+
+        pane command="pnpm" name="db:up:pg" start_suspended=true {
+          args "run" "db:up:pg"
+          cwd "work/lumio/packages/db"
+        }
+
+        pane command="pnpm" name="db:up:mysql" start_suspended=true {
+          args "run" "db:up:mysql"
+          cwd "work/lumio/packages/db"
+        }
+
+        pane command="pnpm" name="db:drop" start_suspended=true {
+          args "run" "db:drop"
+          cwd "work/lumio/packages/db"
+        }
+
+        pane command="pnpm" name="db:studio" start_suspended=true {
+          args "run" "db:studio"
           cwd "work/lumio/packages/db"
         }
 

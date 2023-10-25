@@ -1,0 +1,53 @@
+layout {
+
+    cwd "/home/onahp"
+
+    default_tab_template { 
+      pane size=1 borderless=true {
+        plugin location="zellij:compact-bar"
+      }
+      children
+    }
+
+    // Acesss to current project
+    tab name="thesis-paper" cwd="uni/masters-eng-thesis" {
+
+      pane split_direction="vertical" {
+        pane edit="thesis/draft/1_06082023/thesis.tex" name="draft"
+        pane edit="thesis/draft/1_06082023/refs.bib" name="references"
+      }
+
+    }
+
+    // Run application environments
+    tab name="thesis-prototype" cwd="uni/prototypes/paradigm-chain" {
+      floating_panes {
+        pane command="pnpm" name="install" start_suspended=true {
+          args "i"
+          cwd "uni/prototypes/paradigm-chain"
+        }
+
+        pane command="pnpm" name="start" start_suspended=true {
+          args "start"
+          cwd "uni/prototypes/paradigm-chain"
+        }
+
+        pane command="pnpm" name="test" start_suspended=true {
+          args "test"
+          cwd "uni/prototypes/paradigm-chain"
+        }
+
+        pane command="pnpm" name="package" start_suspended=true {
+          args "package"
+          cwd "uni/prototypes/paradigm-chain"
+        }
+      }
+      pane split_direction="vertical" {
+        pane edit="package.json" name="package"
+        pane command="nvim" name="database" {
+          args "+DBUIToggle"
+        }
+      }
+    }
+
+}
